@@ -18,6 +18,8 @@ PIC16F72 to PIC16C57 PCB Notes:
 
 2. D3 - ESD (strongely recommand)
 
-3. use **round-pin headers**, **NOT square-pin headers**. Refer to the image 
+3. use **round-pin headers**, **NOT square-pin headers**. Refer to the image
+ 
 ![DIP Socket Specification](hardware/DIP.png)
+
 *Use round-pin header*

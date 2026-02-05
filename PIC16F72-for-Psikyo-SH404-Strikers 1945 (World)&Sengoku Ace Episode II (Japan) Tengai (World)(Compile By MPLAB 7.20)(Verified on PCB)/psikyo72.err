@@ -1,0 +1,35 @@
+Warning[205] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 31 : Found directive in column 1. (ORG)
+Warning[205] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 35 : Found directive in column 1. (ORG)
+Warning[207] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 36 : Found label after column 1. (TABLE_ENTRY)
+Warning[205] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 40 : Found directive in column 1. (ORG)
+Warning[205] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 87 : Found directive in column 1. (ORG)
+Warning[205] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 110 : Found directive in column 1. (ORG)
+Message[302] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 121 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 125 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 131 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 137 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 139 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 141 : Use of this instruction is not recommended.
+Message[302] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 164 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 180 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 182 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 184 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 199 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 210 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 236 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 240 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 259 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 263 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 273 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 286 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 292 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 294 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 306 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 310 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 327 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 331 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 344 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 354 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 356 : Use of this instruction is not recommended.
+Warning[224] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 369 : Use of this instruction is not recommended.
+Warning[205] D:\S1945-W-TO-J\PIC16F72-V2.2-REG-PORTA+PORTB\PSIKYO72.ASM 382 : Found directive in column 1. (ORG)

@@ -1,0 +1,541 @@
+MPASM  4.02 Released                             PSIKYO72.ASM   1-10-2026  11:08:05         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; PIC16F72 Ported Assembly Program (Final Fixed Version)
+                      00002 ; Constraint: PortA(RA0~RA3) / PortB(RB0~RB7) / PortC(RC0~RC7) (Hardware PortC)
+                      00003 ; Configuration: HS Oscillator / WDT Disabled / Code Protect Disabled
+                      00004 ; Register Address & Bit Definition (PIC16F72 Bank0)
+  00000003            00005 STATUS      EQU 03h        ; Status Register (Bank0: 03h)
+  00000002            00006 PCL         EQU 02h        ; Program Counter Low Byte (Bank0: 02h)
+  00000004            00007 FSR         EQU 04h        ; File Select Register (Bank0: 04h)
+  00000005            00008 PORTA       EQU 05h        ; PortA Data Register (Bank0: 05h, RA0~RA3 used)
+  00000006            00009 PORTB       EQU 06h        ; PortB Data Register (Bank0: 06h, Full 8bit)
+  00000007            00010 PORTC       EQU 07h        ; PortC Data Register (Bank0: 07h, F72 Hardware PortC)
+  00000020            00011 Reg10       EQU 20h        ; User Register 10h (Bank0: 10h)
+  00000021            00012 Reg11       EQU 21h        ; User Register 11h (Bank0: 11h)
+  00000022            00013 Reg12       EQU 22h        ; User Register 12h (Bank0: 12h)
+  00000023            00014 Reg13       EQU 23h        ; User Register 13h (Bank0: 13h)
+  00000024            00015 Reg14       EQU 24h        ; User Register 14h (Bank0: 14h)
+                      00016 ; 以下是新增的A/D相关寄存器及位定义
+  0000001F            00017 ADCON0      EQU 1Fh        ; A/D控制寄存器（Bank0，固定地址1Fh）
+  0000009F            00018 ADCON1      EQU 9Fh        ; A/D配置寄存器（Bank1，固定地址8Eh）
+                      00019 ; STATUS Register Bit Definition (Fix RP0/RP1 Undefined)
+  00000005            00020 RP0         EQU 5          ; STATUS Bit5 = RP0 (Bank Select)
+  00000006            00021 RP1         EQU 6          ; STATUS Bit6 = RP1 (Bank Select)
+  00000085            00022 TRISA       EQU 85h        ; PORTA方向寄存器（Bank1，85h）
+  00000086            00023 TRISB       EQU 86h        ; PORTB方向寄存器（Bank1，86h）
+  00000087            00024 TRISC       EQU 87h        ; PORTC方向寄存器（Bank1，87h）
+                      00025 
+                      00026 ; Configuration Word (16进制直接定义，适配所有汇编器)
+                      00027 ; CONFIG1 (0x2007): HS Osc / WDT Off / PWRTE On / CP Off
+2007   3FFA           00028  __CONFIG 0x3FFA  ; 等价于 0x37FB（HS+WDT Off+CP Off）
+                      00029 
+                      00030 ; Reset Vector (PIC16F72: 0x000)
+Warning[205]: Found directive in column 1. (ORG)
+0000                  00031 ORG 0x000
+0000   2900           00032         GOTO MAIN                  ; Reset Jump to Main Program
+                      00033 
+                      00034 ; Table Entry (Moved to 0x004 - Avoid Interrupt Vector)
+Warning[205]: Found directive in column 1. (ORG)
+0004                  00035 ORG 0x004
+Warning[207]: Found label after column 1. (TABLE_ENTRY)
+0004                  00036         TABLE_ENTRY:
+0004   0782           00037     ADDWF PCL,F            ; Table Address Calculation Logic
+                      00038 
+                      00039 ; Data Table (0x005~0x030: Original RETLW Sequence)
+Warning[205]: Found directive in column 1. (ORG)
+0005                  00040 ORG 0x005
+0005   3400           00041     RETLW 00h          ; 0x005 (Original 0x001)
+0006   3400           00042     RETLW 00h          ; 0x006 (Original 0x002)
+0007   3464           00043     RETLW 64h          ; 0x007 (Original 0x003)
+0008   34B6           00044     RETLW 0B6h         ; 0x008 (Original 0x004)
+0009   3400           00045     RETLW 00h          ; 0x009 (Original 0x005)
+000A   3400           00046     RETLW 00h          ; 0x00A (Original 0x006)
+000B   3426           00047     RETLW 26h          ; 0x00B (Original 0x007)
+000C   342C           00048     RETLW 2Ch          ; 0x00C (Original 0x008)
+000D   3400           00049     RETLW 00h          ; 0x00D (Original 0x009)
+MPASM  4.02 Released                             PSIKYO72.ASM   1-10-2026  11:08:05         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000E   3400           00050     RETLW 00h          ; 0x00E (Original 0x00A)
+000F   342C           00051     RETLW 2Ch          ; 0x00F (Original 0x00B)
+0010   34DA           00052     RETLW 0DAh         ; 0x010 (Original 0x00C)
+0011   3400           00053     RETLW 00h          ; 0x011 (Original 0x00D)
+0012   3400           00054     RETLW 00h          ; 0x012 (Original 0x00E)
+0013   342C           00055     RETLW 2Ch          ; 0x013 (Original 0x00F)
+0014   34BC           00056     RETLW 0BCh         ; 0x014 (Original 0x010)
+0015   3400           00057     RETLW 00h          ; 0x015 (Original 0x011)
+0016   3400           00058     RETLW 00h          ; 0x016 (Original 0x012)
+0017   342C           00059     RETLW 2Ch          ; 0x017 (Original 0x013)
+0018   349E           00060     RETLW 09Eh         ; 0x018 (Original 0x014)
+0019   3400           00061     RETLW 00h          ; 0x019 (Original 0x015)
+001A   3400           00062     RETLW 00h          ; 0x01A (Original 0x016)
+001B   342F           00063     RETLW 2Fh          ; 0x01B (Original 0x017)
+001C   340E           00064     RETLW 0Eh          ; 0x01C (Original 0x018)
+001D   3400           00065     RETLW 00h          ; 0x01D (Original 0x019)
+001E   3400           00066     RETLW 00h          ; 0x01E (Original 0x01A)
+001F   3431           00067     RETLW 31h          ; 0x01F (Original 0x01B)
+0020   3410           00068     RETLW 10h          ; 0x020 (Original 0x01C)
+0021   3400           00069     RETLW 00h          ; 0x021 (Original 0x01D)
+0022   3400           00070     RETLW 00h          ; 0x022 (Original 0x01E)
+0023   34C5           00071     RETLW 0C5h         ; 0x023 (Original 0x01F)
+0024   3492           00072     RETLW 92h          ; 0x024 (Original 0x020)
+0025   3400           00073     RETLW 00h          ; 0x025 (Original 0x021)
+0026   3400           00074     RETLW 00h          ; 0x026 (Original 0x022)
+0027   3432           00075     RETLW 32h          ; 0x027 (Original 0x023)
+0028   3490           00076     RETLW 90h          ; 0x028 (Original 0x024)
+0029   3400           00077     RETLW 00h          ; 0x029 (Original 0x025)
+002A   3400           00078     RETLW 00h          ; 0x02A (Original 0x026)
+002B   34AC           00079     RETLW 0ACh         ; 0x02B (Original 0x027)
+002C   3464           00080     RETLW 64h          ; 0x02C (Original 0x028)
+002D   3400           00081     RETLW 00h          ; 0x02D (Original 0x029)
+002E   3400           00082     RETLW 00h          ; 0x02E (Original 0x02A)
+002F   342B           00083     RETLW 2Bh          ; 0x02F (Original 0x02B)
+0030   34C0           00084     RETLW 0C0h         ; 0x030 (Original 0x02C)
+                      00085 
+                      00086 ; Comparison Subroutine (0x031~0x03B)
+Warning[205]: Found directive in column 1. (ORG)
+0031                  00087 ORG 0x031
+0031                  00088 COMP_SUB:
+0031   1283           00089     BCF STATUS, RP0     ; Switch to Bank0
+0032   1303           00090     BCF STATUS, RP1
+0033   302C           00091     MOVLW 2Ch          
+0034   00A0           00092     MOVWF Reg10        
+0035   0823           00093     MOVF Reg13,W       
+0036   0221           00094     SUBWF Reg11,W      
+0037   1003           00095     BCF STATUS,0       
+0038   02A0           00096     SUBWF Reg10,F      
+0039   1C03           00097     BTFSS STATUS,0     
+003A   3401           00098     RETLW 01h          
+003B   2004           00099     CALL TABLE_ENTRY   
+003C   00A2           00100     MOVWF Reg12        
+003D   3400           00101     RETLW 00h          
+MPASM  4.02 Released                             PSIKYO72.ASM   1-10-2026  11:08:05         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00102 
+                      00103 ; Fill Area (0x03C~0x0FF: 无地址覆盖，直接填充)
+                      00104 ;ORG 0x03C
+                      00105 ;REPT 0x0FF - 0x03C + 1    ; 重复填充指令（从0x03C到0x0FF共198条）
+                      00106 ;    XORLW 0FFh         
+                      00107 ;ENDM
+                      00108 
+                      00109 ; Main Program (0x100~0x19C)
+Warning[205]: Found directive in column 1. (ORG)
+0100                  00110 ORG 0x100
+0100                  00111 MAIN:
+0100   1283           00112     BCF STATUS, RP0     ; Switch to Bank0
+0101   1303           00113     BCF STATUS, RP1
+                      00114 
+0102   1283 1303      00115         BANKSEL PORTA ; select bank for PORTA
+0104   0185           00116         CLRF PORTA ; Initialize PORTA by
+                      00117         ; clearing output
+                      00118         ; data latches
+0105   1683 1303      00119         BANKSEL ADCON1 ; Select Bank for ADCON1
+0107   3006           00120         MOVLW 0x06 ; Configure all pins
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0108   009F           00121         MOVWF ADCON1 ; as digital inputs
+0109   30FF           00122         MOVLW 0xFF ; Value used to
+                      00123         ; initialize data
+                      00124         ; direction
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+010A   0085           00125         MOVWF TRISA ; Set RA<3:0> as inputs
+                      00126         ; RA<5:4> as outputs
+                      00127         ; TRISA<7:6> are always
+                      00128         ; read as ‘0’.
+                      00129 
+010B   300D           00130     MOVLW 0Dh          
+Warning[224]: Use of this instruction is not recommended.
+010C   0062           00131     OPTION             
+010D   0083           00132     MOVWF STATUS       
+010E   0084           00133     MOVWF FSR          
+010F   3000           00134     MOVLW 00h          
+0110   00A3           00135     MOVWF Reg13        
+0111   300F           00136     MOVLW 0Fh          
+Warning[224]: Use of this instruction is not recommended.
+0112   0065           00137     TRIS PORTA         
+0113   30FF           00138     MOVLW 0FFh         
+Warning[224]: Use of this instruction is not recommended.
+0114   0066           00139     TRIS PORTB         
+0115   30FF           00140     MOVLW 0FFh         
+Warning[224]: Use of this instruction is not recommended.
+0116   0067           00141     TRIS PORTC        
+                      00142 
+                      00143 ; Read PortA (0x10B~0x111)
+0117                  00144 PTA_READ:
+0117   1283           00145     BCF STATUS, RP0     
+0118   1303           00146     BCF STATUS, RP1
+                      00147 
+MPASM  4.02 Released                             PSIKYO72.ASM   1-10-2026  11:08:05         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0119   0805           00148     MOVF PORTA,W       
+011A   00A0           00149     MOVWF Reg10        
+011B   300F           00150     MOVLW 0Fh          
+011C   1103           00151     BCF STATUS,2       
+011D   0220           00152     SUBWF Reg10,W      
+011E   1D03           00153     BTFSS STATUS,2     
+011F   2917           00154     GOTO PTA_READ      
+                      00155 
+                      00156 ; Read PortB (0x112~0x118)
+0120                  00157 PTB_READ:
+0120   1283           00158     BCF STATUS, RP0
+0121   1303           00159     BCF STATUS, RP1
+                      00160 
+                      00161 ; 确保TRISB设为输入
+0122   1683           00162     BSF STATUS, RP0    ; 切换到Bank1
+0123   30FF           00163     MOVLW 0xFF         ; 全输入
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0124   0086           00164     MOVWF TRISB
+0125   1283           00165     BCF STATUS, RP0    ; 切换回Bank0
+                      00166 
+0126   0806           00167     MOVF PORTB,W       
+0127   00A0           00168     MOVWF Reg10        
+0128   30FF           00169     MOVLW 0FFh         
+0129   1103           00170     BCF STATUS,2       
+012A   0220           00171     SUBWF Reg10,W      
+012B   1D03           00172     BTFSS STATUS,2     
+012C   2917           00173     GOTO PTA_READ      
+                      00174 
+                      00175 ; Port Initialization (0x119~0x11C)
+012D                  00176 PORT_INIT:
+012D   1283           00177     BCF STATUS, RP0
+012E   1303           00178     BCF STATUS, RP1
+012F   300F           00179     MOVLW 0Fh          
+Warning[224]: Use of this instruction is not recommended.
+0130   0065           00180     TRIS PORTA         
+0131   30FF           00181     MOVLW 0FFh         
+Warning[224]: Use of this instruction is not recommended.
+0132   0066           00182     TRIS PORTB         
+0133   30FF           00183     MOVLW 0FFh         
+Warning[224]: Use of this instruction is not recommended.
+0134   0067           00184     TRIS PORTC        
+                      00185 
+                      00186 ; Watchdog Timer Reset Loop (0x11E~0x120)
+0135                  00187 WDT_RESET:
+0135   1283           00188     BCF STATUS, RP0
+0136   1303           00189     BCF STATUS, RP1
+0137   0064           00190     CLRWDT             
+0138   1805           00191     BTFSC PORTA,0      
+0139   2935           00192     GOTO WDT_RESET     
+013A   1885           00193     BTFSC PORTA,1      
+013B   29C3           00194     GOTO FUNCTION_194  
+                      00195     
+013C   0806           00196     MOVF PORTB,W       
+MPASM  4.02 Released                             PSIKYO72.ASM   1-10-2026  11:08:05         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+013D   00A0           00197     MOVWF Reg10        
+013E   3003           00198     MOVLW 03h          
+Warning[224]: Use of this instruction is not recommended.
+013F   0065           00199     TRIS PORTA         
+0140   3008           00200     MOVLW 08h          
+0141   0085           00201     MOVWF PORTA        
+                      00202 
+                      00203 ; Wait for PortA Bit0 to Set (0x129~0x12A)
+0142                  00204 PTA0_WAIT:
+0142   1283           00205     BCF STATUS, RP0
+0143   1303           00206     BCF STATUS, RP1
+0144   1C05           00207     BTFSS PORTA,0      
+0145   2942           00208     GOTO PTA0_WAIT     
+0146   300F           00209     MOVLW 0Fh          
+Warning[224]: Use of this instruction is not recommended.
+0147   0065           00210     TRIS PORTA         
+0148   1103           00211     BCF STATUS,2       
+0149   08A0           00212     MOVF Reg10,F       
+014A   1903           00213     BTFSC STATUS,2     
+014B   2958           00214     GOTO FUNCTION_13B  
+                      00215     
+014C   03A0           00216     DECF Reg10,F       
+014D   1903           00217     BTFSC STATUS,2     
+014E   296B           00218     GOTO FUNCTION_14A  
+014F   03A0           00219     DECF Reg10,F       
+0150   1903           00220     BTFSC STATUS,2     
+0151   2976           00221     GOTO FUNCTION_153  
+0152   03A0           00222     DECF Reg10,F       
+0153   1903           00223     BTFSC STATUS,2     
+0154   29A3           00224     GOTO FUNCTION_17A  
+0155   03A0           00225     DECF Reg10,F       
+0156   1903           00226     BTFSC STATUS,2     
+0157   29B8           00227     GOTO FUNCTION_18B  
+                      00228 
+                      00229 ; Function Subroutine 13B: PortB Output 00h (0x13D~0x149)
+0158                  00230 FUNCTION_13B:
+0158   1283           00231     BCF STATUS, RP0
+0159   1303           00232     BCF STATUS, RP1
+015A   3000           00233     MOVLW 00h          
+015B   00A0           00234     MOVWF Reg10        
+015C   3000           00235     MOVLW 00h          
+Warning[224]: Use of this instruction is not recommended.
+015D   0066           00236     TRIS PORTB         
+015E   3000           00237     MOVLW 00h          
+015F   0086           00238     MOVWF PORTB        
+0160   300C           00239     MOVLW 0Ch          
+Warning[224]: Use of this instruction is not recommended.
+0161   0065           00240     TRIS PORTA         
+0162   3000           00241     MOVLW 00h          
+0163   0085           00242     MOVWF PORTA        
+                      00243 
+                      00244 ; Wait for PortA Bit2 to Clear (0x147~0x148)
+0164                  00245 PTA2_WAIT:
+MPASM  4.02 Released                             PSIKYO72.ASM   1-10-2026  11:08:05         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0164   1283           00246     BCF STATUS, RP0
+0165   1303           00247     BCF STATUS, RP1
+0166   1905           00248     BTFSC PORTA,2      
+0167   2964           00249     GOTO PTA2_WAIT     
+0168   300F           00250     MOVLW 0Fh          
+0169   0085           00251     MOVWF PORTA        
+016A   292D           00252     GOTO PORT_INIT     
+                      00253 
+                      00254 ; Function Subroutine 14A: PortB Output 55h (0x14C~0x152)
+016B                  00255 FUNCTION_14A:
+016B   1283           00256     BCF STATUS, RP0
+016C   1303           00257     BCF STATUS, RP1
+016D   3000           00258     MOVLW 00h          
+Warning[224]: Use of this instruction is not recommended.
+016E   0066           00259     TRIS PORTB         
+016F   3055           00260     MOVLW 55h          
+0170   0086           00261     MOVWF PORTB        
+0171   300C           00262     MOVLW 0Ch          
+Warning[224]: Use of this instruction is not recommended.
+0172   0065           00263     TRIS PORTA         
+0173   3000           00264     MOVLW 00h          
+0174   0085           00265     MOVWF PORTA        
+0175   2964           00266     GOTO PTA2_WAIT     
+                      00267 
+                      00268 ; Function Subroutine 153: Compare and Output Reg12 (0x155~0x179)
+0176                  00269 FUNCTION_153:
+0176   1283           00270     BCF STATUS, RP0
+0177   1303           00271     BCF STATUS, RP1
+0178   300C           00272     MOVLW 0Ch          
+Warning[224]: Use of this instruction is not recommended.
+0179   0065           00273     TRIS PORTA         
+017A   3002           00274     MOVLW 02h          
+017B   0085           00275     MOVWF PORTA        
+                      00276 
+                      00277 ; Wait for PortA Bit2 to Set (0x159~0x15A)
+017C                  00278 PTA2_WAIT_SET:
+017C   1283           00279     BCF STATUS, RP0
+017D   1303           00280     BCF STATUS, RP1
+017E   1905           00281     BTFSC PORTA,2      
+017F   297C           00282     GOTO PTA2_WAIT_SET 
+0180   1D85           00283     BTFSS PORTA,3      
+0181   292D           00284     GOTO PORT_INIT     
+0182   30FF           00285     MOVLW 0FFh         
+Warning[224]: Use of this instruction is not recommended.
+0183   0066           00286     TRIS PORTB         
+0184   0806           00287     MOVF PORTB,W       
+0185   00A1           00288     MOVWF Reg11        
+0186   300F           00289     MOVLW 0Fh          
+0187   0085           00290     MOVWF PORTA        
+0188   300F           00291     MOVLW 0Fh          
+Warning[224]: Use of this instruction is not recommended.
+0189   0065           00292     TRIS PORTA         
+018A   30FF           00293     MOVLW 0FFh         
+MPASM  4.02 Released                             PSIKYO72.ASM   1-10-2026  11:08:05         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[224]: Use of this instruction is not recommended.
+018B   0066           00294     TRIS PORTB         
+018C   2031           00295     CALL COMP_SUB      
+018D   00A4           00296     MOVWF Reg14        
+018E   1805           00297     BTFSC PORTA,0      
+018F   298E           00298     GOTO $-1           
+0190   1C85           00299     BTFSS PORTA,1      
+0191   29C3           00300     GOTO FUNCTION_194  
+0192   1103           00301     BCF STATUS,2       
+0193   08A4           00302     MOVF Reg14,F       
+0194   1D03           00303     BTFSS STATUS,2     
+0195   29C3           00304     GOTO FUNCTION_194  
+0196   3000           00305     MOVLW 00h          
+Warning[224]: Use of this instruction is not recommended.
+0197   0066           00306     TRIS PORTB         
+0198   0822           00307     MOVF Reg12,W       
+0199   0086           00308     MOVWF PORTB        
+019A   3003           00309     MOVLW 03h          
+Warning[224]: Use of this instruction is not recommended.
+019B   0065           00310     TRIS PORTA         
+019C   3008           00311     MOVLW 08h          
+019D   0085           00312     MOVWF PORTA        
+                      00313 
+                      00314 ; Wait for PortA Bit0 to Set (0x179~0x17A)
+019E                  00315 PTA0_WAIT_SET:
+019E   1283           00316     BCF STATUS, RP0
+019F   1303           00317     BCF STATUS, RP1
+01A0   1C05           00318     BTFSS PORTA,0      
+01A1   299E           00319     GOTO PTA0_WAIT_SET 
+01A2   292D           00320     GOTO PORT_INIT     
+                      00321 
+                      00322 ; Function Subroutine 17A: PortC Read and PortB Add (0x17C~0x18A)
+01A3                  00323 FUNCTION_17A:
+01A3   1283           00324     BCF STATUS, RP0
+01A4   1303           00325     BCF STATUS, RP1
+01A5   30FF           00326     MOVLW 0FFh         
+Warning[224]: Use of this instruction is not recommended.
+01A6   0067           00327     TRIS PORTC         
+01A7   0807           00328     MOVF PORTC,W       
+01A8   00A3           00329     MOVWF Reg13        
+01A9   300C           00330     MOVLW 0Ch          
+Warning[224]: Use of this instruction is not recommended.
+01AA   0065           00331     TRIS PORTA         
+01AB   3002           00332     MOVLW 02h          
+01AC   0085           00333     MOVWF PORTA        
+                      00334 
+                      00335 ; Wait for PortA Bit2 to Clear (0x184~0x185)
+01AD                  00336 PTA2_WAIT_CLR:
+01AD   1283           00337     BCF STATUS, RP0
+01AE   1303           00338     BCF STATUS, RP1
+01AF   1905           00339     BTFSC PORTA,2      
+01B0   29AD           00340     GOTO PTA2_WAIT_CLR 
+01B1   1D85           00341     BTFSS PORTA,3      
+MPASM  4.02 Released                             PSIKYO72.ASM   1-10-2026  11:08:05         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+01B2   292D           00342     GOTO PORT_INIT     
+01B3   30FF           00343     MOVLW 0FFh         
+Warning[224]: Use of this instruction is not recommended.
+01B4   0066           00344     TRIS PORTB         
+01B5   0806           00345     MOVF PORTB,W       
+01B6   07A3           00346     ADDWF Reg13,F      
+01B7   292D           00347     GOTO PORT_INIT     
+                      00348 
+                      00349 ; Function Subroutine 18B: PortC to PortB Output (0x18D~0x193)
+01B8                  00350 FUNCTION_18B:
+01B8   1283           00351     BCF STATUS, RP0
+01B9   1303           00352     BCF STATUS, RP1
+01BA   300F           00353     MOVLW 0Fh          
+Warning[224]: Use of this instruction is not recommended.
+01BB   0065           00354     TRIS PORTA         
+01BC   3000           00355     MOVLW 00h          
+Warning[224]: Use of this instruction is not recommended.
+01BD   0066           00356     TRIS PORTB         
+01BE                  00357 FUNCTION_18C:
+01BE   0807           00358     MOVF PORTC,W       
+01BF   0086           00359     MOVWF PORTB        
+01C0   1805           00360     BTFSC PORTA,0      
+01C1   29BE           00361     GOTO FUNCTION_18C
+01C2   2935           00362     GOTO WDT_RESET     
+                      00363 
+                      00364 ; Function Subroutine 194: PortA Initialization and Wait (0x196~0x19A)
+01C3                  00365 FUNCTION_194:
+01C3   1283           00366     BCF STATUS, RP0
+01C4   1303           00367     BCF STATUS, RP1
+01C5   3003           00368     MOVLW 03h          
+Warning[224]: Use of this instruction is not recommended.
+01C6   0065           00369     TRIS PORTA         
+01C7   3000           00370     MOVLW 00h          
+01C8   0085           00371     MOVWF PORTA        
+                      00372 
+                      00373 ; Wait for PortA Bit0 to Clear (0x19A~0x19B)
+01C9                  00374 PTA0_WAIT_CLR:
+01C9   1283           00375     BCF STATUS, RP0
+01CA   1303           00376     BCF STATUS, RP1
+01CB   1C05           00377     BTFSS PORTA,0      
+01CC   29C9           00378     GOTO PTA0_WAIT_CLR 
+01CD   292D           00379     GOTO PORT_INIT     
+                      00380 
+                      00381 ; Program End (0xFFF)
+Warning[205]: Found directive in column 1. (ORG)
+07FF                  00382 ORG 0x7FF
+07FF   2900           00383     GOTO MAIN          
+                      00384     END                
+MPASM  4.02 Released                             PSIKYO72.ASM   1-10-2026  11:08:05         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADCON0                            0000001F
+ADCON1                            0000009F
+COMP_SUB                          00000031
+FSR                               00000004
+FUNCTION_13B                      00000158
+FUNCTION_14A                      0000016B
+FUNCTION_153                      00000176
+FUNCTION_17A                      000001A3
+FUNCTION_18B                      000001B8
+FUNCTION_18C                      000001BE
+FUNCTION_194                      000001C3
+MAIN                              00000100
+PCL                               00000002
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PORT_INIT                         0000012D
+PTA0_WAIT                         00000142
+PTA0_WAIT_CLR                     000001C9
+PTA0_WAIT_SET                     0000019E
+PTA2_WAIT                         00000164
+PTA2_WAIT_CLR                     000001AD
+PTA2_WAIT_SET                     0000017C
+PTA_READ                          00000117
+PTB_READ                          00000120
+RP0                               00000005
+RP1                               00000006
+Reg10                             00000020
+Reg11                             00000021
+Reg12                             00000022
+Reg13                             00000023
+Reg14                             00000024
+STATUS                            00000003
+TABLE_ENTRY                       00000004
+TRISA                             00000085
+TRISB                             00000086
+TRISC                             00000087
+WDT_RESET                         00000135
+__16F72                           00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXX--
+0100 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0140 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+MPASM  4.02 Released                             PSIKYO72.ASM   1-10-2026  11:08:05         PAGE 10
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+
+0180 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+01C0 : XXXXXXXXXXXXXX-- ---------------- ---------------- ----------------
+07C0 : ---------------- ---------------- ---------------- ---------------X
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   266
+Program Memory Words Free:  1782
+
+
+Errors   :     0
+Warnings :    32 reported,     0 suppressed
+Messages :     3 reported,     0 suppressed
+
+

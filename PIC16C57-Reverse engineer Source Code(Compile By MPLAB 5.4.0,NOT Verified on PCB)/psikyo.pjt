@@ -1,0 +1,82 @@
+[PROJECT]
+Target=PSIKYO4.HEX
+Development_Mode=2
+Processor=0x6c57
+ToolSuite=Microchip
+[Fuses]
+Frequency=4000000.000000
+ClockSource=1
+Mode=0
+WDTEnable=0
+WDTBreak=0
+WDTPrescale=710
+StackBreak=0
+Freeze=1
+EmulatorMemory=1
+ShortWrites=0
+PwrSetting=0
+OSC_Settings=0
+ProgBankRegEnable=0
+BankRegStartAddress=0
+BankRegEndAddress=0
+DisableIoPins=0
+12CXXX_MCLR_ENABLE=0
+CPP2_ENABLE=0
+LPSC_ENABLE=0
+MCLRPU_ENABLE=0
+[Directories]
+Include=
+Library=
+LinkerScript=
+[Target Data]
+FileList=PSIKYO4.ASM;
+BuildTool=MPASM
+OptionString=
+AdditionalOptionString=
+BuildRequired=0
+[PSIKYO4.ASM]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[Trace-Config]
+GetAddress=1
+AddressWidth=5.000000
+GetOpcode=1
+OpcodeWidth=5.000000
+GetLabel=1
+LabelWidth=8.000000
+GetInstruction=1
+InstructionWidth=10.000000
+InstructionRaw=1
+GetSrcAddr=1
+SrcAddrWidth=4.000000
+SrcAddrRaw=1
+GetSrcValue=1
+SrcValueWidth=4.000000
+GetDstAddr=1
+DstAddrWidth=4.000000
+DstAddrRaw=1
+GetDstValue=1
+DstValueWidth=4.000000
+GetExtInputs=1
+ExtInputsWidth=9.000000
+ExtInputsHexFmt=0
+GetTimeStamp=1
+TimeStampWidth=11.000000
+TimeStampDiplay=0
+TraceLines=100
+TraceFull=0
+CodeCoverageReset=0
+[Windows]
+4=0000 c:\docume~1\admini~1\桌面\s1945改j\mpl540~1\psikyo4.asm 22 22 1082 483 9 0
+3=0010 412 30 892 648 9 4 16
+2=0002 C:\DOCUME~1\ADMINI~1\桌面\S1945改J\MPL540~1\Watch_1.wat 674 196 1074 340 9 0
+1=0020 502 71 902 343 9 0
+0=0040 110 110 598 318 9 4 16
+[mru-list]
+1=c:\docume~1\admini~1\桌面\s1945改j\mpl540~1\psikyo4.asm
+[Breakpoints]
+0=break1 MAIN WDT_RESET 1 0

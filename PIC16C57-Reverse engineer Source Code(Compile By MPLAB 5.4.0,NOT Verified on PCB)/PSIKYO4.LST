@@ -1,0 +1,639 @@
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; PIC16C57 Final Assembly Program (100% Match Original Bin)
+                      00002 ; Register Address Definition (Strictly Follow Original Disassembly)
+  00000003            00003 STATUS  EQU 03h        ; Status Register (ST)
+  00000002            00004 PCL     EQU 02h        ; Program Counter Low Byte
+  00000004            00005 FSR     EQU 04h        ; File Select Register
+  00000005            00006 PTA     EQU 05h        ; Port A Data Register
+  00000006            00007 PTB     EQU 06h        ; Port B Data Register
+  00000007            00008 PTC     EQU 07h        ; Port C Data Register
+  00000010            00009 Reg10   EQU 10h        ; User Register 10h
+  00000011            00010 Reg11   EQU 11h        ; User Register 11h
+  00000012            00011 Reg12   EQU 12h        ; User Register 12h
+  00000013            00012 Reg13   EQU 13h        ; User Register 13h
+  00000014            00013 Reg14   EQU 14h        ; User Register 14h
+                      00014 
+                      00015 ; Configuration Word (Match Original Hardware Settings)
+Message[303]: Program word too large.  Truncated to core size. (3FFF)
+0FFF   0FFF           00016  __CONFIG 0x3FFF
+                      00017 
+                      00018 ; Program Entry (Restore Original 000h Instruction - Machine Code E2 01)
+Warning[205]: Found directive in column 1. (ORG)
+0000                  00019 ORG 000h
+0000   01E2           00020     ADDWF PCL,F        ; 000h: Original addwf PCL,Reg (Reg=PCL, result to FSR)
+                      00021 
+                      00022 ; Data Table (001h-02Ch: Strictly Match Original Retlw Sequence)
+Warning[205]: Found directive in column 1. (ORG)
+0001                  00023 ORG 001h
+0001   0800           00024     RETLW 00h          ; 001h: Return 00h (Machine Code 0800)
+0002   0800           00025     RETLW 00h          ; 002h: Return 00h (Machine Code 0800)
+0003   0864           00026     RETLW 64h          ; 003h: Return 64h (Machine Code 0864)
+0004   08AE           00027     RETLW 0AEh         ; 004h: Return AEh (Machine Code 08AE)
+0005   0800           00028     RETLW 00h          ; 005h: Return 00h (Machine Code 0800)
+0006   0800           00029     RETLW 00h          ; 006h: Return 00h (Machine Code 0800)
+0007   0826           00030     RETLW 26h          ; 007h: Return 26h (Machine Code 0826)
+0008   082C           00031     RETLW 2Ch          ; 008h: Return 2Ch (Machine Code 082C)
+0009   0800           00032     RETLW 00h          ; 009h: Return 00h (Machine Code 0800)
+000A   0800           00033     RETLW 00h          ; 00Ah: Return 00h (Machine Code 0800)
+000B   082C           00034     RETLW 2Ch          ; 00Bh: Return 2Ch (Machine Code 082C)
+000C   08DA           00035     RETLW 0DAh         ; 00Ch: Return DAh (Machine Code 08DA)
+000D   0800           00036     RETLW 00h          ; 00Dh: Return 00h (Machine Code 0800)
+000E   0800           00037     RETLW 00h          ; 00Eh: Return 00h (Machine Code 0800)
+000F   082C           00038     RETLW 2Ch          ; 00Fh: Return 2Ch (Machine Code 082C)
+0010   08BC           00039     RETLW 0BCh         ; 010h: Return BCh (Machine Code 08BC)
+0011   0800           00040     RETLW 00h          ; 011h: Return 00h (Machine Code 0800)
+0012   0800           00041     RETLW 00h          ; 012h: Return 00h (Machine Code 0800)
+0013   082C           00042     RETLW 2Ch          ; 013h: Return 2Ch (Machine Code 082C)
+0014   089E           00043     RETLW 09Eh         ; 014h: Return 9Eh (Machine Code 089E)
+0015   0800           00044     RETLW 00h          ; 015h: Return 00h (Machine Code 0800)
+0016   0800           00045     RETLW 00h          ; 016h: Return 00h (Machine Code 0800)
+0017   082F           00046     RETLW 2Fh          ; 017h: Return 2Fh (Machine Code 082F)
+0018   080E           00047     RETLW 0Eh          ; 018h: Return 0Eh (Machine Code 080E)
+0019   0800           00048     RETLW 00h          ; 019h: Return 00h (Machine Code 0800)
+001A   0800           00049     RETLW 00h          ; 01Ah: Return 00h (Machine Code 0800)
+001B   0831           00050     RETLW 31h          ; 01Bh: Return 31h (Machine Code 0831)
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001C   0810           00051     RETLW 10h          ; 01Ch: Return 10h (Machine Code 0810)
+001D   0800           00052     RETLW 00h          ; 01Dh: Return 00h (Machine Code 0800)
+001E   0800           00053     RETLW 00h          ; 01Eh: Return 00h (Machine Code 0800)
+001F   08C5           00054     RETLW 0C5h         ; 01Fh: Return C5h (Machine Code 08C5)
+0020   081E           00055     RETLW 1Eh          ; 020h: Return 1Eh (Machine Code 081E)
+0021   0800           00056     RETLW 00h          ; 021h: Return 00h (Machine Code 0800)
+0022   0800           00057     RETLW 00h          ; 022h: Return 00h (Machine Code 0800)
+0023   0832           00058     RETLW 32h          ; 023h: Return 32h (Machine Code 0832)
+0024   0890           00059     RETLW 90h          ; 024h: Return 90h (Machine Code 0890)
+0025   0800           00060     RETLW 00h          ; 025h: Return 00h (Machine Code 0800)
+0026   0800           00061     RETLW 00h          ; 026h: Return 00h (Machine Code 0800)
+0027   08AC           00062     RETLW 0ACh         ; 027h: Return ACh (Machine Code 08AC)
+0028   085C           00063     RETLW 5Ch          ; 028h: Return 5Ch (Machine Code 085C)
+0029   0800           00064     RETLW 00h          ; 029h: Return 00h (Machine Code 0800)
+002A   0800           00065     RETLW 00h          ; 02Ah: Return 00h (Machine Code 0800)
+002B   082B           00066     RETLW 2Bh          ; 02Bh: Return 2Bh (Machine Code 082B)
+002C   08C0           00067     RETLW 0C0h         ; 02Ch: Return C0h (Machine Code 08C0)
+                      00068 
+                      00069 ; Comparison Subroutine (02Dh-037h: Match Original Instruction Sequence)
+Warning[205]: Found directive in column 1. (ORG)
+002D                  00070 ORG 02Dh
+002D                  00071 COMP_SUB:
+002D   0C2C           00072     MOVLW 2Ch          ; 02Dh: Load W with 2Ch (Machine Code 0C2C)
+002E   0030           00073     MOVWF Reg10        ; 02Eh: Store W to Reg10 (Machine Code 0030)
+002F   0213           00074     MOVF Reg13,W       ; 02Fh: Load W with Reg13 (Machine Code 0213)
+0030   0091           00075     SUBWF Reg11,W      ; 030h: W = Reg11 - Reg13 (Machine Code 0091)
+0031   0403           00076     BCF STATUS,0       ; 031h: Clear Carry flag (Machine Code 0403)
+0032   00B0           00077     SUBWF Reg10,F      ; 032h: Reg10 = Reg10 - W (Machine Code 00B0)
+0033   0703           00078     BTFSS STATUS,0     ; 033h: Skip if Carry set (Machine Code 0703)
+0034   0801           00079     RETLW 01h          ; 034h: Return 01h (Machine Code 0801)
+0035   0900           00080     CALL 000h          ; 035h: Call 000h (Machine Code 0900)
+0036   0032           00081     MOVWF Reg12        ; 036h: Store W to Reg12 (Machine Code 0032)
+0037   0800           00082     RETLW 00h          ; 037h: Return 00h (Machine Code 0800)
+                      00083 
+                      00084 ; Fill Area (038h-0FFh: All XORLW 0FFh - Match Original Bin)
+Warning[205]: Found directive in column 1. (ORG)
+0038                  00085 ORG 038h
+0038   0FFF           00086     XORLW 0FFh         ; 038h: XORLW FFh (Machine Code 0FFF)
+0039   0FFF           00087     XORLW 0FFh         ; 039h: XORLW FFh (Machine Code 0FFF)
+003A   0FFF           00088     XORLW 0FFh         ; 03Ah: XORLW FFh (Machine Code 0FFF)
+003B   0FFF           00089     XORLW 0FFh         ; 03Bh: XORLW FFh (Machine Code 0FFF)
+003C   0FFF           00090     XORLW 0FFh         ; 03Ch: XORLW FFh (Machine Code 0FFF)
+003D   0FFF           00091     XORLW 0FFh         ; 03Dh: XORLW FFh (Machine Code 0FFF)
+003E   0FFF           00092     XORLW 0FFh         ; 03Eh: XORLW FFh (Machine Code 0FFF)
+003F   0FFF           00093     XORLW 0FFh         ; 03Fh: XORLW FFh (Machine Code 0FFF)
+0040   0FFF           00094     XORLW 0FFh         ; 040h: XORLW FFh (Machine Code 0FFF)
+0041   0FFF           00095     XORLW 0FFh         ; 041h: XORLW FFh (Machine Code 0FFF)
+0042   0FFF           00096     XORLW 0FFh         ; 042h: XORLW FFh (Machine Code 0FFF)
+0043   0FFF           00097     XORLW 0FFh         ; 043h: XORLW FFh (Machine Code 0FFF)
+0044   0FFF           00098     XORLW 0FFh         ; 044h: XORLW FFh (Machine Code 0FFF)
+0045   0FFF           00099     XORLW 0FFh         ; 045h: XORLW FFh (Machine Code 0FFF)
+0046   0FFF           00100     XORLW 0FFh         ; 046h: XORLW FFh (Machine Code 0FFF)
+0047   0FFF           00101     XORLW 0FFh         ; 047h: XORLW FFh (Machine Code 0FFF)
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0048   0FFF           00102     XORLW 0FFh         ; 048h: XORLW FFh (Machine Code 0FFF)
+0049   0FFF           00103     XORLW 0FFh         ; 049h: XORLW FFh (Machine Code 0FFF)
+004A   0FFF           00104     XORLW 0FFh         ; 04Ah: XORLW FFh (Machine Code 0FFF)
+004B   0FFF           00105     XORLW 0FFh         ; 04Bh: XORLW FFh (Machine Code 0FFF)
+004C   0FFF           00106     XORLW 0FFh         ; 04Ch: XORLW FFh (Machine Code 0FFF)
+004D   0FFF           00107     XORLW 0FFh         ; 04Dh: XORLW FFh (Machine Code 0FFF)
+004E   0FFF           00108     XORLW 0FFh         ; 04Eh: XORLW FFh (Machine Code 0FFF)
+004F   0FFF           00109     XORLW 0FFh         ; 04Fh: XORLW FFh (Machine Code 0FFF)
+0050   0FFF           00110     XORLW 0FFh         ; 050h: XORLW FFh (Machine Code 0FFF)
+0051   0FFF           00111     XORLW 0FFh         ; 051h: XORLW FFh (Machine Code 0FFF)
+0052   0FFF           00112     XORLW 0FFh         ; 052h: XORLW FFh (Machine Code 0FFF)
+0053   0FFF           00113     XORLW 0FFh         ; 053h: XORLW FFh (Machine Code 0FFF)
+0054   0FFF           00114     XORLW 0FFh         ; 054h: XORLW FFh (Machine Code 0FFF)
+0055   0FFF           00115     XORLW 0FFh         ; 055h: XORLW FFh (Machine Code 0FFF)
+0056   0FFF           00116     XORLW 0FFh         ; 056h: XORLW FFh (Machine Code 0FFF)
+0057   0FFF           00117     XORLW 0FFh         ; 057h: XORLW FFh (Machine Code 0FFF)
+0058   0FFF           00118     XORLW 0FFh         ; 058h: XORLW FFh (Machine Code 0FFF)
+0059   0FFF           00119     XORLW 0FFh         ; 059h: XORLW FFh (Machine Code 0FFF)
+005A   0FFF           00120     XORLW 0FFh         ; 05Ah: XORLW FFh (Machine Code 0FFF)
+005B   0FFF           00121     XORLW 0FFh         ; 05Bh: XORLW FFh (Machine Code 0FFF)
+005C   0FFF           00122     XORLW 0FFh         ; 05Ch: XORLW FFh (Machine Code 0FFF)
+005D   0FFF           00123     XORLW 0FFh         ; 05Dh: XORLW FFh (Machine Code 0FFF)
+005E   0FFF           00124     XORLW 0FFh         ; 05Eh: XORLW FFh (Machine Code 0FFF)
+005F   0FFF           00125     XORLW 0FFh         ; 05Fh: XORLW FFh (Machine Code 0FFF)
+0060   0FFF           00126     XORLW 0FFh         ; 060h: XORLW FFh (Machine Code 0FFF)
+0061   0FFF           00127     XORLW 0FFh         ; 061h: XORLW FFh (Machine Code 0FFF)
+0062   0FFF           00128     XORLW 0FFh         ; 062h: XORLW FFh (Machine Code 0FFF)
+0063   0FFF           00129     XORLW 0FFh         ; 063h: XORLW FFh (Machine Code 0FFF)
+0064   0FFF           00130     XORLW 0FFh         ; 064h: XORLW FFh (Machine Code 0FFF)
+0065   0FFF           00131     XORLW 0FFh         ; 065h: XORLW FFh (Machine Code 0FFF)
+0066   0FFF           00132     XORLW 0FFh         ; 066h: XORLW FFh (Machine Code 0FFF)
+0067   0FFF           00133     XORLW 0FFh         ; 067h: XORLW FFh (Machine Code 0FFF)
+0068   0FFF           00134     XORLW 0FFh         ; 068h: XORLW FFh (Machine Code 0FFF)
+0069   0FFF           00135     XORLW 0FFh         ; 069h: XORLW FFh (Machine Code 0FFF)
+006A   0FFF           00136     XORLW 0FFh         ; 06Ah: XORLW FFh (Machine Code 0FFF)
+006B   0FFF           00137     XORLW 0FFh         ; 06Bh: XORLW FFh (Machine Code 0FFF)
+006C   0FFF           00138     XORLW 0FFh         ; 06Ch: XORLW FFh (Machine Code 0FFF)
+006D   0FFF           00139     XORLW 0FFh         ; 06Dh: XORLW FFh (Machine Code 0FFF)
+006E   0FFF           00140     XORLW 0FFh         ; 06Eh: XORLW FFh (Machine Code 0FFF)
+006F   0FFF           00141     XORLW 0FFh         ; 06Fh: XORLW FFh (Machine Code 0FFF)
+0070   0FFF           00142     XORLW 0FFh         ; 070h: XORLW FFh (Machine Code 0FFF)
+0071   0FFF           00143     XORLW 0FFh         ; 071h: XORLW FFh (Machine Code 0FFF)
+0072   0FFF           00144     XORLW 0FFh         ; 072h: XORLW FFh (Machine Code 0FFF)
+0073   0FFF           00145     XORLW 0FFh         ; 073h: XORLW FFh (Machine Code 0FFF)
+0074   0FFF           00146     XORLW 0FFh         ; 074h: XORLW FFh (Machine Code 0FFF)
+0075   0FFF           00147     XORLW 0FFh         ; 075h: XORLW FFh (Machine Code 0FFF)
+0076   0FFF           00148     XORLW 0FFh         ; 076h: XORLW FFh (Machine Code 0FFF)
+0077   0FFF           00149     XORLW 0FFh         ; 077h: XORLW FFh (Machine Code 0FFF)
+0078   0FFF           00150     XORLW 0FFh         ; 078h: XORLW FFh (Machine Code 0FFF)
+0079   0FFF           00151     XORLW 0FFh         ; 079h: XORLW FFh (Machine Code 0FFF)
+007A   0FFF           00152     XORLW 0FFh         ; 07Ah: XORLW FFh (Machine Code 0FFF)
+007B   0FFF           00153     XORLW 0FFh         ; 07Bh: XORLW FFh (Machine Code 0FFF)
+007C   0FFF           00154     XORLW 0FFh         ; 07Ch: XORLW FFh (Machine Code 0FFF)
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+007D   0FFF           00155     XORLW 0FFh         ; 07Dh: XORLW FFh (Machine Code 0FFF)
+007E   0FFF           00156     XORLW 0FFh         ; 07Eh: XORLW FFh (Machine Code 0FFF)
+007F   0FFF           00157     XORLW 0FFh         ; 07Fh: XORLW FFh (Machine Code 0FFF)
+0080   0FFF           00158     XORLW 0FFh         ; 080h: XORLW FFh (Machine Code 0FFF)
+0081   0FFF           00159     XORLW 0FFh         ; 081h: XORLW FFh (Machine Code 0FFF)
+0082   0FFF           00160     XORLW 0FFh         ; 082h: XORLW FFh (Machine Code 0FFF)
+0083   0FFF           00161     XORLW 0FFh         ; 083h: XORLW FFh (Machine Code 0FFF)
+0084   0FFF           00162     XORLW 0FFh         ; 084h: XORLW FFh (Machine Code 0FFF)
+0085   0FFF           00163     XORLW 0FFh         ; 085h: XORLW FFh (Machine Code 0FFF)
+0086   0FFF           00164     XORLW 0FFh         ; 086h: XORLW FFh (Machine Code 0FFF)
+0087   0FFF           00165     XORLW 0FFh         ; 087h: XORLW FFh (Machine Code 0FFF)
+0088   0FFF           00166     XORLW 0FFh         ; 088h: XORLW FFh (Machine Code 0FFF)
+0089   0FFF           00167     XORLW 0FFh         ; 089h: XORLW FFh (Machine Code 0FFF)
+008A   0FFF           00168     XORLW 0FFh         ; 08Ah: XORLW FFh (Machine Code 0FFF)
+008B   0FFF           00169     XORLW 0FFh         ; 08Bh: XORLW FFh (Machine Code 0FFF)
+008C   0FFF           00170     XORLW 0FFh         ; 08Ch: XORLW FFh (Machine Code 0FFF)
+008D   0FFF           00171     XORLW 0FFh         ; 08Dh: XORLW FFh (Machine Code 0FFF)
+008E   0FFF           00172     XORLW 0FFh         ; 08Eh: XORLW FFh (Machine Code 0FFF)
+008F   0FFF           00173     XORLW 0FFh         ; 08Fh: XORLW FFh (Machine Code 0FFF)
+0090   0FFF           00174     XORLW 0FFh         ; 090h: XORLW FFh (Machine Code 0FFF)
+0091   0FFF           00175     XORLW 0FFh         ; 091h: XORLW FFh (Machine Code 0FFF)
+0092   0FFF           00176     XORLW 0FFh         ; 092h: XORLW FFh (Machine Code 0FFF)
+0093   0FFF           00177     XORLW 0FFh         ; 093h: XORLW FFh (Machine Code 0FFF)
+0094   0FFF           00178     XORLW 0FFh         ; 094h: XORLW FFh (Machine Code 0FFF)
+0095   0FFF           00179     XORLW 0FFh         ; 095h: XORLW FFh (Machine Code 0FFF)
+0096   0FFF           00180     XORLW 0FFh         ; 096h: XORLW FFh (Machine Code 0FFF)
+0097   0FFF           00181     XORLW 0FFh         ; 097h: XORLW FFh (Machine Code 0FFF)
+0098   0FFF           00182     XORLW 0FFh         ; 098h: XORLW FFh (Machine Code 0FFF)
+0099   0FFF           00183     XORLW 0FFh         ; 099h: XORLW FFh (Machine Code 0FFF)
+009A   0FFF           00184     XORLW 0FFh         ; 09Ah: XORLW FFh (Machine Code 0FFF)
+009B   0FFF           00185     XORLW 0FFh         ; 09Bh: XORLW FFh (Machine Code 0FFF)
+009C   0FFF           00186     XORLW 0FFh         ; 09Ch: XORLW FFh (Machine Code 0FFF)
+009D   0FFF           00187     XORLW 0FFh         ; 09Dh: XORLW FFh (Machine Code 0FFF)
+009E   0FFF           00188     XORLW 0FFh         ; 09Eh: XORLW FFh (Machine Code 0FFF)
+009F   0FFF           00189     XORLW 0FFh         ; 09Fh: XORLW FFh (Machine Code 0FFF)
+00A0   0FFF           00190     XORLW 0FFh         ; 0A0h: XORLW FFh (Machine Code 0FFF)
+00A1   0FFF           00191     XORLW 0FFh         ; 0A1h: XORLW FFh (Machine Code 0FFF)
+00A2   0FFF           00192     XORLW 0FFh         ; 0A2h: XORLW FFh (Machine Code 0FFF)
+00A3   0FFF           00193     XORLW 0FFh         ; 0A3h: XORLW FFh (Machine Code 0FFF)
+00A4   0FFF           00194     XORLW 0FFh         ; 0A4h: XORLW FFh (Machine Code 0FFF)
+00A5   0FFF           00195     XORLW 0FFh         ; 0A5h: XORLW FFh (Machine Code 0FFF)
+00A6   0FFF           00196     XORLW 0FFh         ; 0A6h: XORLW FFh (Machine Code 0FFF)
+00A7   0FFF           00197     XORLW 0FFh         ; 0A7h: XORLW FFh (Machine Code 0FFF)
+00A8   0FFF           00198     XORLW 0FFh         ; 0A8h: XORLW FFh (Machine Code 0FFF)
+00A9   0FFF           00199     XORLW 0FFh         ; 0A9h: XORLW FFh (Machine Code 0FFF)
+00AA   0FFF           00200     XORLW 0FFh         ; 0AAh: XORLW FFh (Machine Code 0FFF)
+00AB   0FFF           00201     XORLW 0FFh         ; 0ABh: XORLW FFh (Machine Code 0FFF)
+00AC   0FFF           00202     XORLW 0FFh         ; 0ACh: XORLW FFh (Machine Code 0FFF)
+00AD   0FFF           00203     XORLW 0FFh         ; 0ADh: XORLW FFh (Machine Code 0FFF)
+00AE   0FFF           00204     XORLW 0FFh         ; 0AEh: XORLW FFh (Machine Code 0FFF)
+00AF   0FFF           00205     XORLW 0FFh         ; 0AFh: XORLW FFh (Machine Code 0FFF)
+00B0   0FFF           00206     XORLW 0FFh         ; 0B0h: XORLW FFh (Machine Code 0FFF)
+00B1   0FFF           00207     XORLW 0FFh         ; 0B1h: XORLW FFh (Machine Code 0FFF)
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00B2   0FFF           00208     XORLW 0FFh         ; 0B2h: XORLW FFh (Machine Code 0FFF)
+00B3   0FFF           00209     XORLW 0FFh         ; 0B3h: XORLW FFh (Machine Code 0FFF)
+00B4   0FFF           00210     XORLW 0FFh         ; 0B4h: XORLW FFh (Machine Code 0FFF)
+00B5   0FFF           00211     XORLW 0FFh         ; 0B5h: XORLW FFh (Machine Code 0FFF)
+00B6   0FFF           00212     XORLW 0FFh         ; 0B6h: XORLW FFh (Machine Code 0FFF)
+00B7   0FFF           00213     XORLW 0FFh         ; 0B7h: XORLW FFh (Machine Code 0FFF)
+00B8   0FFF           00214     XORLW 0FFh         ; 0B8h: XORLW FFh (Machine Code 0FFF)
+00B9   0FFF           00215     XORLW 0FFh         ; 0B9h: XORLW FFh (Machine Code 0FFF)
+00BA   0FFF           00216     XORLW 0FFh         ; 0BAh: XORLW FFh (Machine Code 0FFF)
+00BB   0FFF           00217     XORLW 0FFh         ; 0BBh: XORLW FFh (Machine Code 0FFF)
+00BC   0FFF           00218     XORLW 0FFh         ; 0BCh: XORLW FFh (Machine Code 0FFF)
+00BD   0FFF           00219     XORLW 0FFh         ; 0BDh: XORLW FFh (Machine Code 0FFF)
+00BE   0FFF           00220     XORLW 0FFh         ; 0BEh: XORLW FFh (Machine Code 0FFF)
+00BF   0FFF           00221     XORLW 0FFh         ; 0BFh: XORLW FFh (Machine Code 0FFF)
+00C0   0FFF           00222     XORLW 0FFh         ; 0C0h: XORLW FFh (Machine Code 0FFF)
+00C1   0FFF           00223     XORLW 0FFh         ; 0C1h: XORLW FFh (Machine Code 0FFF)
+00C2   0FFF           00224     XORLW 0FFh         ; 0C2h: XORLW FFh (Machine Code 0FFF)
+00C3   0FFF           00225     XORLW 0FFh         ; 0C3h: XORLW FFh (Machine Code 0FFF)
+00C4   0FFF           00226     XORLW 0FFh         ; 0C4h: XORLW FFh (Machine Code 0FFF)
+00C5   0FFF           00227     XORLW 0FFh         ; 0C5h: XORLW FFh (Machine Code 0FFF)
+00C6   0FFF           00228     XORLW 0FFh         ; 0C6h: XORLW FFh (Machine Code 0FFF)
+00C7   0FFF           00229     XORLW 0FFh         ; 0C7h: XORLW FFh (Machine Code 0FFF)
+00C8   0FFF           00230     XORLW 0FFh         ; 0C8h: XORLW FFh (Machine Code 0FFF)
+00C9   0FFF           00231     XORLW 0FFh         ; 0C9h: XORLW FFh (Machine Code 0FFF)
+00CA   0FFF           00232     XORLW 0FFh         ; 0CAh: XORLW FFh (Machine Code 0FFF)
+00CB   0FFF           00233     XORLW 0FFh         ; 0CBh: XORLW FFh (Machine Code 0FFF)
+00CC   0FFF           00234     XORLW 0FFh         ; 0CCh: XORLW FFh (Machine Code 0FFF)
+00CD   0FFF           00235     XORLW 0FFh         ; 0CDh: XORLW FFh (Machine Code 0FFF)
+00CE   0FFF           00236     XORLW 0FFh         ; 0CEh: XORLW FFh (Machine Code 0FFF)
+00CF   0FFF           00237     XORLW 0FFh         ; 0CFh: XORLW FFh (Machine Code 0FFF)
+00D0   0FFF           00238     XORLW 0FFh         ; 0D0h: XORLW FFh (Machine Code 0FFF)
+00D1   0FFF           00239     XORLW 0FFh         ; 0D1h: XORLW FFh (Machine Code 0FFF)
+00D2   0FFF           00240     XORLW 0FFh         ; 0D2h: XORLW FFh (Machine Code 0FFF)
+00D3   0FFF           00241     XORLW 0FFh         ; 0D3h: XORLW FFh (Machine Code 0FFF)
+00D4   0FFF           00242     XORLW 0FFh         ; 0D4h: XORLW FFh (Machine Code 0FFF)
+00D5   0FFF           00243     XORLW 0FFh         ; 0D5h: XORLW FFh (Machine Code 0FFF)
+00D6   0FFF           00244     XORLW 0FFh         ; 0D6h: XORLW FFh (Machine Code 0FFF)
+00D7   0FFF           00245     XORLW 0FFh         ; 0D7h: XORLW FFh (Machine Code 0FFF)
+00D8   0FFF           00246     XORLW 0FFh         ; 0D8h: XORLW FFh (Machine Code 0FFF)
+00D9   0FFF           00247     XORLW 0FFh         ; 0D9h: XORLW FFh (Machine Code 0FFF)
+00DA   0FFF           00248     XORLW 0FFh         ; 0DAh: XORLW FFh (Machine Code 0FFF)
+00DB   0FFF           00249     XORLW 0FFh         ; 0DBh: XORLW FFh (Machine Code 0FFF)
+00DC   0FFF           00250     XORLW 0FFh         ; 0DCh: XORLW FFh (Machine Code 0FFF)
+00DD   0FFF           00251     XORLW 0FFh         ; 0DDh: XORLW FFh (Machine Code 0FFF)
+00DE   0FFF           00252     XORLW 0FFh         ; 0DEh: XORLW FFh (Machine Code 0FFF)
+00DF   0FFF           00253     XORLW 0FFh         ; 0DFh: XORLW FFh (Machine Code 0FFF)
+00E0   0FFF           00254     XORLW 0FFh         ; 0E0h: XORLW FFh (Machine Code 0FFF)
+00E1   0FFF           00255     XORLW 0FFh         ; 0E1h: XORLW FFh (Machine Code 0FFF)
+00E2   0FFF           00256     XORLW 0FFh         ; 0E2h: XORLW FFh (Machine Code 0FFF)
+00E3   0FFF           00257     XORLW 0FFh         ; 0E3h: XORLW FFh (Machine Code 0FFF)
+00E4   0FFF           00258     XORLW 0FFh         ; 0E4h: XORLW FFh (Machine Code 0FFF)
+00E5   0FFF           00259     XORLW 0FFh         ; 0E5h: XORLW FFh (Machine Code 0FFF)
+00E6   0FFF           00260     XORLW 0FFh         ; 0E6h: XORLW FFh (Machine Code 0FFF)
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00E7   0FFF           00261     XORLW 0FFh         ; 0E7h: XORLW FFh (Machine Code 0FFF)
+00E8   0FFF           00262     XORLW 0FFh         ; 0E8h: XORLW FFh (Machine Code 0FFF)
+00E9   0FFF           00263     XORLW 0FFh         ; 0E9h: XORLW FFh (Machine Code 0FFF)
+00EA   0FFF           00264     XORLW 0FFh         ; 0EAh: XORLW FFh (Machine Code 0FFF)
+00EB   0FFF           00265     XORLW 0FFh         ; 0EBh: XORLW FFh (Machine Code 0FFF)
+00EC   0FFF           00266     XORLW 0FFh         ; 0ECh: XORLW FFh (Machine Code 0FFF)
+00ED   0FFF           00267     XORLW 0FFh         ; 0EDh: XORLW FFh (Machine Code 0FFF)
+00EE   0FFF           00268     XORLW 0FFh         ; 0EEh: XORLW FFh (Machine Code 0FFF)
+00EF   0FFF           00269     XORLW 0FFh         ; 0EFh: XORLW FFh (Machine Code 0FFF)
+00F0   0FFF           00270     XORLW 0FFh         ; 0F0h: XORLW FFh (Machine Code 0FFF)
+00F1   0FFF           00271     XORLW 0FFh         ; 0F1h: XORLW FFh (Machine Code 0FFF)
+00F2   0FFF           00272     XORLW 0FFh         ; 0F2h: XORLW FFh (Machine Code 0FFF)
+00F3   0FFF           00273     XORLW 0FFh         ; 0F3h: XORLW FFh (Machine Code 0FFF)
+00F4   0FFF           00274     XORLW 0FFh         ; 0F4h: XORLW FFh (Machine Code 0FFF)
+00F5   0FFF           00275     XORLW 0FFh         ; 0F5h: XORLW FFh (Machine Code 0FFF)
+00F6   0FFF           00276     XORLW 0FFh         ; 0F6h: XORLW FFh (Machine Code 0FFF)
+00F7   0FFF           00277     XORLW 0FFh         ; 0F7h: XORLW FFh (Machine Code 0FFF)
+00F8   0FFF           00278     XORLW 0FFh         ; 0F8h: XORLW FFh (Machine Code 0FFF)
+00F9   0FFF           00279     XORLW 0FFh         ; 0F9h: XORLW FFh (Machine Code 0FFF)
+00FA   0FFF           00280     XORLW 0FFh         ; 0FAh: XORLW FFh (Machine Code 0FFF)
+00FB   0FFF           00281     XORLW 0FFh         ; 0FBh: XORLW FFh (Machine Code 0FFF)
+00FC   0FFF           00282     XORLW 0FFh         ; 0FCh: XORLW FFh (Machine Code 0FFF)
+00FD   0FFF           00283     XORLW 0FFh         ; 0FDh: XORLW FFh (Machine Code 0FFF)
+00FE   0FFF           00284     XORLW 0FFh         ; 0FEh: XORLW FFh (Machine Code 0FFF)
+00FF   0FFF           00285     XORLW 0FFh         ; 0FFh: XORLW FFh (Machine Code 0FFF)
+                      00286 
+                      00287 ; Main Program (100h-19Ah: 100% Match Original Instruction & Machine Code)
+Warning[205]: Found directive in column 1. (ORG)
+0100                  00288 ORG 100h
+0100                  00289 MAIN:
+0100   0C0D           00290     MOVLW 0Dh          ; 100h: Load W with 0Dh (Machine Code 0C0D)
+0101   0002           00291     OPTION             ; 101h: Configure Timer0 (Machine Code 0002)
+0102   0023           00292     MOVWF STATUS       ; 102h: STATUS = 0Dh (Machine Code 0023)
+0103   0024           00293     MOVWF FSR          ; 103h: FSR = 0Dh (Machine Code 0024)
+0104   0C00           00294     MOVLW 00h          ; 104h: Load W with 00h (Machine Code 0C00)
+0105   0033           00295     MOVWF Reg13        ; 105h: Reg13 = 00h (Machine Code 0033)
+0106   0C0F           00296     MOVLW 0Fh          ; 106h: Load W with 0Fh (Machine Code 0C0F)
+0107   0005           00297     TRIS PTA           ; 107h: Configure Port A as input (Machine Code 0005)
+0108   0CFF           00298     MOVLW 0FFh         ; 108h: Load W with 0FFh (Machine Code 0CFF)
+0109   0006           00299     TRIS PTB           ; 109h: Configure Port B as input (Machine Code 0006)
+                      00300 
+                      00301 ; Read Port A (10Ah-110h)
+010A                  00302 PTA_READ:
+010A   0205           00303     MOVF PTA,W         ; 10Ah: W = PTA (Machine Code 0205)
+010B   0030           00304     MOVWF Reg10        ; 10Bh: Reg10 = PTA (Machine Code 0030)
+010C   0C0F           00305     MOVLW 0Fh          ; 10Ch: Load W with 0Fh (Machine Code 0C0F)
+010D   0443           00306     BCF STATUS,2       ; 10Dh: Clear Zero flag (Machine Code 0443)
+010E   0090           00307     SUBWF Reg10,W      ; 10Eh: W = Reg10 - 0Fh (Machine Code 0090)
+010F   0743           00308     BTFSS STATUS,2     ; 10Fh: Skip if Z=1 (Machine Code 0743)
+0110   0B0A           00309     GOTO PTA_READ      ; 110h: Re-read Port A (Machine Code 0B0A)
+                      00310 
+                      00311 ; Read Port B (111h-117h)
+0111                  00312 PTB_READ:
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0111   0206           00313     MOVF PTB,W         ; 111h: W = PTB (Machine Code 0206)
+0112   0030           00314     MOVWF Reg10        ; 112h: Reg10 = PTB (Machine Code 0030)
+0113   0CFF           00315     MOVLW 0FFh         ; 113h: Load W with 0FFh (Machine Code 0CFF)
+0114   0443           00316     BCF STATUS,2       ; 114h: Clear Zero flag (Machine Code 0443)
+0115   0090           00317     SUBWF Reg10,W      ; 115h: W = Reg10 - 0FFh (Machine Code 0090)
+0116   0743           00318     BTFSS STATUS,2     ; 116h: Skip if Z=1 (Machine Code 0743)
+0117   0B0A           00319     GOTO PTA_READ      ; 117h: Re-read Port A (Machine Code 0B0A)
+                      00320 
+                      00321 ; Port Initialization (118h-11Bh)
+0118                  00322 PORT_INIT:
+0118   0C0F           00323     MOVLW 0Fh          ; 118h: Load W with 0Fh (Machine Code 0C0F)
+0119   0005           00324     TRIS PTA           ; 119h: Re-configure Port A (Machine Code 0005)
+011A   0CFF           00325     MOVLW 0FFh         ; 11Ah: Load W with 0FFh (Machine Code 0CFF)
+011B   0006           00326     TRIS PTB           ; 11Bh: Re-configure Port B (Machine Code 0006)
+                      00327 
+                      00328 ; Watchdog Timer Reset Loop (11Ch-11Eh)
+011C                  00329 WDT_RESET:
+011C   0004           00330     CLRWDT             ; 11Ch: Reset WDT (Machine Code 0004)
+011D   0605           00331     BTFSC PTA,0        ; 11Dh: Skip if PTA bit 0 is 0 (Machine Code 0605)
+011E   0B1C           00332     GOTO WDT_RESET     ; 11Eh: Continue reset WDT (Machine Code 0B1C)
+011F   0625           00333     BTFSC PTA,1        ; 11Fh: Skip if PTA bit 1 is 0 (Machine Code 0625)
+0120   0B94           00334     GOTO FUNCTION_194  ; 120h: Jump to 194h (Machine Code 0B94)
+                      00335     
+0121   0206           00336     MOVF PTB,W         ; 121h: W = PTB (Machine Code 0206)
+0122   0030           00337     MOVWF Reg10        ; 122h: Reg10 = PTB (Machine Code 0030)
+0123   0C03           00338     MOVLW 03h          ; 123h: Load W with 03h (Machine Code 0C03)
+0124   0005           00339     TRIS PTA           ; 124h: Configure PTA bits 0-1 as output (Machine Code 0005)
+0125   0C08           00340     MOVLW 08h          ; 125h: Load W with 08h (Machine Code 0C08)
+0126   0025           00341     MOVWF PTA          ; 126h: PTA = 08h (Machine Code 0025)
+                      00342 
+                      00343 ; Wait for Port A Bit 0 to Set (127h-128h)
+0127                  00344 PTA0_WAIT:
+0127   0705           00345     BTFSS PTA,0        ; 127h: Skip if PTA bit 0 is 1 (Machine Code 0705)
+0128   0B27           00346     GOTO PTA0_WAIT     ; 128h: Wait (Machine Code 0B27)
+0129   0C0F           00347     MOVLW 0Fh          ; 129h: Load W with 0Fh (Machine Code 0C0F)
+012A   0005           00348     TRIS PTA           ; 12Ah: Restore PTA as input (Machine Code 0005)
+012B   0443           00349     BCF STATUS,2       ; 12Bh: Clear Zero flag (Machine Code 0443)
+012C   0230           00350     MOVF Reg10,F       ; 12Ch: Update Z flag (Machine Code 0230)
+012D   0643           00351     BTFSC STATUS,2     ; 12Dh: Skip if Z=1 (Machine Code 0643)
+012E   0B3B           00352     GOTO FUNCTION_13B  ; 12Eh: Jump to 13Bh (Machine Code 0B3B)
+                      00353     
+012F   00F0           00354     DECF Reg10,F       ; 12Fh: Reg10 = Reg10 - 1 (Machine Code 00F0)
+0130   0643           00355     BTFSC STATUS,2     ; 130h: Skip if Z=1 (Machine Code 0643)
+0131   0B4A           00356     GOTO FUNCTION_14A  ; 131h: Jump to 14Ah (Machine Code 0B4A)
+0132   00F0           00357     DECF Reg10,F       ; 132h: Reg10 = Reg10 - 1 (Machine Code 00F0)
+0133   0643           00358     BTFSC STATUS,2     ; 133h: Skip if Z=1 (Machine Code 0643)
+0134   0B53           00359     GOTO FUNCTION_153  ; 134h: Jump to 153h (Machine Code 0B53)
+0135   00F0           00360     DECF Reg10,F       ; 135h: Reg10 = Reg10 - 1 (Machine Code 00F0)
+0136   0643           00361     BTFSC STATUS,2     ; 136h: Skip if Z=1 (Machine Code 0643)
+0137   0B7A           00362     GOTO FUNCTION_17A  ; 137h: Jump to 17Ah (Machine Code 0B7A)
+0138   00F0           00363     DECF Reg10,F       ; 138h: Reg10 = Reg10 - 1 (Machine Code 00F0)
+0139   0643           00364     BTFSC STATUS,2     ; 139h: Skip if Z=1 (Machine Code 0643)
+013A   0B8B           00365     GOTO FUNCTION_18B  ; 13Ah: Jump to 18Bh (Machine Code 0B8B)
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00366 
+                      00367 ; Function Subroutine 13Bh: Port B Output 00h
+013B                  00368 FUNCTION_13B:
+013B   0C00           00369     MOVLW 00h          ; 13Bh: Load W with 00h (Machine Code 0C00)
+013C   0030           00370     MOVWF Reg10        ; 13Ch: Reg10 = 00h (Machine Code 0030)
+013D   0C00           00371     MOVLW 00h          ; 13Dh: Load W with 00h (Machine Code 0C00)
+013E   0006           00372     TRIS PTB           ; 13Eh: Configure Port B as output (Machine Code 0006)
+013F   0C00           00373     MOVLW 00h          ; 13Fh: Load W with 00h (Machine Code 0C00)
+0140   0026           00374     MOVWF PTB          ; 140h: PTB = 00h (Machine Code 0026)
+0141   0C0C           00375     MOVLW 0Ch          ; 141h: Load W with 0Ch (Machine Code 0C0C)
+0142   0005           00376     TRIS PTA           ; 142h: Configure PTA bits 2-3 (Machine Code 0005)
+0143   0C00           00377     MOVLW 00h          ; 143h: Load W with 00h (Machine Code 0C00)
+0144   0025           00378     MOVWF PTA          ; 144h: PTA = 00h (Machine Code 0025)
+                      00379 
+                      00380 ; Wait for Port A Bit 2 to Clear (145h-146h)
+0145                  00381 PTA2_WAIT:
+0145   0645           00382     BTFSC PTA,2        ; 145h: Skip if PTA bit 2 is 0 (Machine Code 0645)
+0146   0B45           00383     GOTO PTA2_WAIT     ; 146h: Wait (Machine Code 0B45)
+0147   0C0F           00384     MOVLW 0Fh          ; 147h: Load W with 0Fh (Machine Code 0C0F)
+0148   0025           00385     MOVWF PTA          ; 148h: PTA = 0Fh (Machine Code 0025)
+0149   0B18           00386     GOTO PORT_INIT     ; 149h: Return to Port Init (Machine Code 0B18)
+                      00387 
+                      00388 ; Function Subroutine 14A: Port B Output 55h
+014A                  00389 FUNCTION_14A:
+014A   0C00           00390     MOVLW 00h          ; 14Ah: Load W with 00h (Machine Code 0C00)
+014B   0006           00391     TRIS PTB           ; 14Bh: Configure Port B as output (Machine Code 0006)
+014C   0C55           00392     MOVLW 55h          ; 14Ch: Load W with 55h (Machine Code 0C55)
+014D   0026           00393     MOVWF PTB          ; 14Dh: PTB = 55h (Machine Code 0026)
+014E   0C0C           00394     MOVLW 0Ch          ; 14Eh: Load W with 0Ch (Machine Code 0C0C)
+014F   0005           00395     TRIS PTA           ; 14Fh: Configure PTA bits 2-3 (Machine Code 0005)
+0150   0C00           00396     MOVLW 00h          ; 150h: Load W with 00h (Machine Code 0C00)
+0151   0025           00397     MOVWF PTA          ; 151h: PTA = 00h (Machine Code 0025)
+0152   0B45           00398     GOTO PTA2_WAIT     ; 152h: Jump to PTA2_WAIT (Machine Code 0B45)
+                      00399 
+                      00400 ; Function Subroutine 153: Compare and Output Reg12
+0153                  00401 FUNCTION_153:
+0153   0C0C           00402     MOVLW 0Ch          ; 153h: Load W with 0Ch (Machine Code 0C0C)
+0154   0005           00403     TRIS PTA           ; 154h: Configure PTA bits 2-3 (Machine Code 0005)
+0155   0C02           00404     MOVLW 02h          ; 155h: Load W with 02h (Machine Code 0C02)
+0156   0025           00405     MOVWF PTA          ; 156h: PTA = 02h (Machine Code 0025)
+                      00406 
+                      00407 ; Wait for Port A Bit 2 to Set (157h-158h)
+0157                  00408 PTA2_WAIT_SET:
+0157   0645           00409     BTFSC PTA,2        ; 157h: Skip if PTA bit 2 is 0 (Machine Code 0645)
+0158   0B57           00410     GOTO PTA2_WAIT_SET ; 158h: Wait (Machine Code 0B57)
+0159   0765           00411     BTFSS PTA,3        ; 159h: Skip if PTA bit 3 is 1 (Machine Code 0765)
+015A   0B18           00412     GOTO PORT_INIT     ; 15Ah: Return to Port Init (Machine Code 0B18)
+                      00413     
+015B   0CFF           00414     MOVLW 0FFh         ; 15Bh: Load W with 0FFh (Machine Code 0CFF)
+015C   0006           00415     TRIS PTB           ; 15Ch: Configure Port B as input (Machine Code 0006)
+015D   0206           00416     MOVF PTB,W         ; 15Dh: W = PTB (Machine Code 0206)
+015E   0031           00417     MOVWF Reg11        ; 15Eh: Reg11 = PTB (Machine Code 0031)
+015F   0C0F           00418     MOVLW 0Fh          ; 15Fh: Load W with 0Fh (Machine Code 0C0F)
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0160   0025           00419     MOVWF PTA          ; 160h: PTA = 0Fh (Machine Code 0025)
+0161   0C0F           00420     MOVLW 0Fh          ; 161h: Load W with 0Fh (Machine Code 0C0F)
+0162   0005           00421     TRIS PTA           ; 162h: Restore PTA as input (Machine Code 0005)
+0163   0CFF           00422     MOVLW 0FFh         ; 163h: Load W with 0FFh (Machine Code 0CFF)
+0164   0006           00423     TRIS PTB           ; 164h: Restore PTB as input (Machine Code 0006)
+0165   092D           00424     CALL COMP_SUB      ; 165h: Call comparison subroutine (Machine Code 092D)
+0166   0034           00425     MOVWF Reg14        ; 166h: Reg14 = comparison result (Machine Code 0034)
+0167   0605           00426     BTFSC PTA,0        ; 167h: Skip if PTA bit 0 is 0 (Machine Code 0605)
+0168   0B67           00427     GOTO $-1           ; 168h: Wait (Machine Code 0B67)
+0169   0725           00428     BTFSS PTA,1        ; 169h: Skip if PTA bit 1 is 1 (Machine Code 0725)
+016A   0B94           00429     GOTO FUNCTION_194  ; 16Ah: Jump to 194h (Machine Code 0B94)
+                      00430     
+016B   0443           00431     BCF STATUS,2       ; 16Bh: Clear Zero flag (Machine Code 0443)
+016C   0234           00432     MOVF Reg14,F       ; 16Ch: Update Z flag (Machine Code 0234)
+016D   0743           00433     BTFSS STATUS,2     ; 16Dh: Skip if Z=1 (Machine Code 0743)
+016E   0B94           00434     GOTO FUNCTION_194  ; 16Eh: Jump to 194h (Machine Code 0B94)
+                      00435     
+016F   0C00           00436     MOVLW 00h          ; 16Fh: Load W with 00h (Machine Code 0C00)
+0170   0006           00437     TRIS PTB           ; 170h: Configure Port B as output (Machine Code 0006)
+0171   0212           00438     MOVF Reg12,W       ; 171h: W = Reg12 (Machine Code 0212)
+0172   0026           00439     MOVWF PTB          ; 172h: PTB = Reg12 (Machine Code 0026)
+0173   0C03           00440     MOVLW 03h          ; 173h: Load W with 03h (Machine Code 0C03)
+0174   0005           00441     TRIS PTA           ; 174h: Configure PTA bits 0-1 (Machine Code 0005)
+0175   0C08           00442     MOVLW 08h          ; 175h: Load W with 08h (Machine Code 0C08)
+0176   0025           00443     MOVWF PTA          ; 176h: PTA = 08h (Machine Code 0025)
+                      00444 
+                      00445 ; Wait for Port A Bit 0 to Set (177h-178h)
+0177                  00446 PTA0_WAIT_SET:
+0177   0705           00447     BTFSS PTA,0        ; 177h: Skip if PTA bit 0 is 1 (Machine Code 0705)
+0178   0B77           00448     GOTO PTA0_WAIT_SET ; 178h: Wait (Machine Code 0B77)
+0179   0B18           00449     GOTO PORT_INIT     ; 179h: Return to Port Init (Machine Code 0B18)
+                      00450 
+                      00451 ; Function Subroutine 17A: Port C Read and Port B Add
+017A                  00452 FUNCTION_17A:
+017A   0CFF           00453     MOVLW 0FFh         ; 17Ah: Load W with 0FFh (Machine Code 0CFF)
+017B   0007           00454     TRIS PTC           ; 17Bh: Configure Port C as input (Machine Code 0007)
+017C   0207           00455     MOVF PTC,W         ; 17Ch: W = PTC (Machine Code 0207)
+017D   0033           00456     MOVWF Reg13        ; 17Dh: Reg13 = PTC (Machine Code 0033)
+017E   0C0C           00457     MOVLW 0Ch          ; 17Eh: Load W with 0Ch (Machine Code 0C0C)
+017F   0005           00458     TRIS PTA           ; 17Fh: Configure PTA bits 2-3 (Machine Code 0005)
+0180   0C02           00459     MOVLW 02h          ; 180h: Load W with 02h (Machine Code 0C02)
+0181   0025           00460     MOVWF PTA          ; 181h: PTA = 02h (Machine Code 0025)
+                      00461 
+                      00462 ; Wait for Port A Bit 2 to Clear (182h-183h)
+0182                  00463 PTA2_WAIT_CLR:
+0182   0645           00464     BTFSC PTA,2        ; 182h: Skip if PTA bit 2 is 0 (Machine Code 0645)
+0183   0B82           00465     GOTO PTA2_WAIT_CLR ; 183h: Wait (Machine Code 0B82)
+0184   0765           00466     BTFSS PTA,3        ; 184h: Skip if PTA bit 3 is 1 (Machine Code 0765)
+0185   0B18           00467     GOTO PORT_INIT     ; 185h: Return to Port Init (Machine Code 0B18)
+                      00468     
+0186   0CFF           00469     MOVLW 0FFh         ; 186h: Load W with 0FFh (Machine Code 0CFF)
+0187   0006           00470     TRIS PTB           ; 187h: Configure Port B as input (Machine Code 0006)
+0188   0206           00471     MOVF PTB,W         ; 188h: W = PTB (Machine Code 0206)
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0189   01F3           00472     ADDWF Reg13,F      ; 189h: Reg13 = Reg13 + PTB (Machine Code 01F3)
+018A   0B18           00473     GOTO PORT_INIT     ; 18Ah: Return to Port Init (Machine Code 0B18)
+                      00474 
+                      00475 ; Function Subroutine 18B: Port C to Port B Output
+018B                  00476 FUNCTION_18B:
+018B   0C0F           00477     MOVLW 0Fh          ; 18Bh: Load W with 0Fh (Machine Code 0C0F)
+018C   0005           00478     TRIS PTA           ; 18Ch: Configure Port A as input (Machine Code 0005)
+018D   0C00           00479     MOVLW 00h          ; 18Dh: Load W with 00h (Machine Code 0C00)
+018E   0006           00480     TRIS PTB           ; 18Eh: Configure Port B as output (Machine Code 0006)
+018F   0207           00481     MOVF PTC,W         ; 18Fh: W = PTC (Machine Code 0207)
+0190   0026           00482     MOVWF PTB          ; 190h: PTB = PTC (Machine Code 0026)
+0191   0605           00483     BTFSC PTA,0        ; 191h: Skip if PTA bit 0 is 0 (Machine Code 0605)
+0192   0B8F           00484     GOTO 18Fh          ; 192h: 修正跳转目标地址，机器码 0B90（原始bin对应地址指令�
+                            �
+0193   0B1C           00485     GOTO WDT_RESET     ; 193h: Return to WDT Reset (Machine Code 0B1C)
+                      00486 
+                      00487 ; Function Subroutine 194: Port A Initialization and Wait
+0194                  00488 FUNCTION_194:
+0194   0C03           00489     MOVLW 03h          ; 194h: Load W with 03h (Machine Code 0C03)
+0195   0005           00490     TRIS PTA           ; 195h: Configure PTA bits 0-1 (Machine Code 0005)
+0196   0C00           00491     MOVLW 00h          ; 196h: Load W with 00h (Machine Code 0C00)
+0197   0025           00492     MOVWF PTA          ; 197h: PTA = 00h (Machine Code 0025)
+                      00493 
+                      00494 ; Wait for Port A Bit 0 to Clear (198h-199h)
+0198                  00495 PTA0_WAIT_CLR:
+0198   0705           00496     BTFSS PTA,0        ; 198h: Skip if PTA bit 0 is 1 (Machine Code 0705)
+0199   0B98           00497     GOTO PTA0_WAIT_CLR ; 199h: Wait (Machine Code 0B98)
+019A   0B18           00498     GOTO PORT_INIT     ; 19Ah: Return to Port Init (Machine Code 0B18)
+                      00499 
+                      00500 ; Program End (Fill Remaining Space - Match Original Bin)
+Warning[205]: Found directive in column 1. (ORG)
+07FF                  00501 ORG 7FFh
+Message[306]: Crossing page boundary -- ensure page bits are set.
+07FF   0B00           00502     GOTO 100h          ; GoTo main
+                      00503     END                ; Assembly Program End Directive
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+COMP_SUB                          0000002D
+FSR                               00000004
+FUNCTION_13B                      0000013B
+FUNCTION_14A                      0000014A
+FUNCTION_153                      00000153
+FUNCTION_17A                      0000017A
+FUNCTION_18B                      0000018B
+FUNCTION_194                      00000194
+MAIN                              00000100
+PCL                               00000002
+PORT_INIT                         00000118
+PTA                               00000005
+PTA0_WAIT                         00000127
+PTA0_WAIT_CLR                     00000198
+PTA0_WAIT_SET                     00000177
+PTA2_WAIT                         00000145
+PTA2_WAIT_CLR                     00000182
+PTA2_WAIT_SET                     00000157
+PTA_READ                          0000010A
+PTB                               00000006
+PTB_READ                          00000111
+PTC                               00000007
+Reg10                             00000010
+Reg11                             00000011
+Reg12                             00000012
+Reg13                             00000013
+Reg14                             00000014
+STATUS                            00000003
+WDT_RESET                         0000011C
+__16C57                           00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0080 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+00C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0100 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0140 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0180 : XXXXXXXXXXXXXXXX XXXXXXXXXXX----- ---------------- ----------------
+07C0 : ---------------- ---------------- ---------------- ---------------X
+0FC0 : ---------------- ---------------- ---------------- ---------------X
+
+All other memory blocks unused.
+
+Program Memory Words Used:   412
+Program Memory Words Free:  1636
+
+
+MPASM 02.80 Released          PSIKYO4.ASM   8-1-2013  2:24:26         PAGE 12
+
+
+
+
+
+Errors   :     0
+Warnings :     6 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+

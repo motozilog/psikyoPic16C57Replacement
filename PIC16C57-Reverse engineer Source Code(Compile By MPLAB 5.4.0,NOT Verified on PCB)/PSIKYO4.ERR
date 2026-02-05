@@ -1,0 +1,8 @@
+Message[303] C:\DOCUME~1\ADMINI~1\桌面\S1945改J\MPL540~1\PSIKYO4.ASM 16 : Program word too large.  Truncated to core size. (3FFF)
+Warning[205] C:\DOCUME~1\ADMINI~1\桌面\S1945改J\MPL540~1\PSIKYO4.ASM 19 : Found directive in column 1. (ORG)
+Warning[205] C:\DOCUME~1\ADMINI~1\桌面\S1945改J\MPL540~1\PSIKYO4.ASM 23 : Found directive in column 1. (ORG)
+Warning[205] C:\DOCUME~1\ADMINI~1\桌面\S1945改J\MPL540~1\PSIKYO4.ASM 70 : Found directive in column 1. (ORG)
+Warning[205] C:\DOCUME~1\ADMINI~1\桌面\S1945改J\MPL540~1\PSIKYO4.ASM 85 : Found directive in column 1. (ORG)
+Warning[205] C:\DOCUME~1\ADMINI~1\桌面\S1945改J\MPL540~1\PSIKYO4.ASM 288 : Found directive in column 1. (ORG)
+Warning[205] C:\DOCUME~1\ADMINI~1\桌面\S1945改J\MPL540~1\PSIKYO4.ASM 501 : Found directive in column 1. (ORG)
+Message[306] C:\DOCUME~1\ADMINI~1\桌面\S1945改J\MPL540~1\PSIKYO4.ASM 502 : Crossing page boundary -- ensure page bits are set.

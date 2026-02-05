@@ -16,7 +16,7 @@ PIC16F72 to PIC16C57 PCB Notes:
 
 1. R5 - Do NOT populate (left open)
 
-2. D3 - ESD (strongely recommand)
+2. D3 - ESD (Optional,But strongely recommand)
 
 3. use **round-pin headers**, **NOT square-pin headers**. Refer to the image
  
